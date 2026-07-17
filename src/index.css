@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "TrajanEmbed";
+  src: url("/fonts/Trajan-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
+html, body, #root { height: 100%; margin: 0; background: #09090b; }
