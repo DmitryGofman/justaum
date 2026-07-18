@@ -3,6 +3,7 @@ import { composeItem, analyzeImage, contrastRatio, extractPalette, isHebrew } fr
 import { store } from "./store.js";
 import { PRESET_DEFAULTS, SCOUT_TERMS } from "./presets.js";
 import { SEED_QUOTES } from "./data/seedQuotes.js";
+import { QUOTE_PACK_1 } from "./data/quotePack1.js";
 import { CANON, weightedScore, verdictOf } from "./canon.js";
 import { configureAI, aiCompose, aiFindQuotes, aiCritique, aiCaption, DEFAULT_MODEL } from "./ai.js";
 import { scoutMet, scoutAIC } from "./scout.js";
@@ -41,6 +42,7 @@ export default function AumStudio() {
   const [findOriginal, setFindOriginal] = useState(false);
   const [scoutItems, setScoutItems] = useState([]);
   const [scoutMode, setScoutMode] = useState("");
+  const [inbox, setInbox] = useState(null);        // agent-scouted art from content/scout-inbox.json
   const [proposal, setProposal] = useState(null);
   const [addOpen, setAddOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -51,15 +53,28 @@ export default function AumStudio() {
   const item = sel >= 0 ? items[sel] : null;
   const preset = presets.find((p) => p.id === ((item && item.styleId) || styleKey)) || presets[0];
 
-  /* boot: font + storage */
+  /* merge new quotes into an existing library, deduped by text */
+  const mergeQuotes = (base, extra, prefix) => {
+    const seen = new Set(base.map((q) => q.text.trim().toLowerCase()));
+    const add = (extra || []).filter((q) => q && q.text && !seen.has(q.text.trim().toLowerCase()))
+      .map((q, i) => ({ cat: "custom", status: "disputed", ...q, id: q.id || prefix + i, usedAt: q.usedAt || [], lang: q.lang || (isHebrew(q.text) ? "he" : "en") }));
+    return add.length ? [...base, ...add] : base;
+  };
+
+  /* boot: font + storage + quote packs */
   useEffect(() => { (async () => {
     try { await document.fonts.load('16px "TrajanEmbed"'); } catch (e) {}
-    const lib = await store.get("aum:library", null);
-    if (lib && lib.length) setLibrary(lib);
-    else {
-      const seeded = SEED_QUOTES.map((q, i) => ({ ...q, id: "q" + i, usedAt: [], lang: isHebrew(q.text) ? "he" : "en" }));
-      setLibrary(seeded); store.set("aum:library", seeded);
-    }
+    let lib = await store.get("aum:library", null);
+    if (!lib || !lib.length) lib = SEED_QUOTES.map((q, i) => ({ ...q, id: "q" + i, usedAt: [], lang: isHebrew(q.text) ? "he" : "en" }));
+    // bundled pack ships with the app; the content/ pack lets agents grow the
+    // stock through git without a rebuild (see /quote-harvest skill)
+    let merged = mergeQuotes(lib, QUOTE_PACK_1, "p1-");
+    try {
+      const r = await fetch("content/quotes-extended.json", { cache: "no-store" });
+      if (r.ok) { const j = await r.json(); merged = mergeQuotes(merged, j.quotes || j, "x" + Date.now() + "-"); }
+    } catch (e) { /* single-file demo or offline — bundled packs only */ }
+    setLibrary(merged);
+    if (merged !== lib) store.set("aum:library", merged);
     const st = await store.get("aum:settings", null);
     if (st) { setSettings((s) => ({ ...s, ...st })); configureAI({ apiKey: st.apiKey || "", model: st.model || DEFAULT_MODEL }); }
     const pr = await store.get("aum:presets", null);
@@ -195,6 +210,16 @@ export default function AumStudio() {
     }
     setBusy("");
   };
+  const loadInbox = async () => {
+    try {
+      const r = await fetch("content/scout-inbox.json", { cache: "no-store" });
+      if (!r.ok) throw 0;
+      const j = await r.json();
+      setInbox(j.items || []);
+    } catch (e) { setInbox([]); }
+  };
+  useEffect(() => { if (tab === "scout" && inbox === null) loadInbox(); }, [tab]);
+
   const scoutAdd = async (s) => {
     setBusy("scoutadd");
     try {
@@ -255,11 +280,11 @@ export default function AumStudio() {
   if (!ready) return <div className="h-screen flex items-center justify-center bg-zinc-950 text-amber-100 font-serif tracking-widest">ॐ &nbsp;loading…</div>;
 
   return (
-  <div className="h-screen flex flex-col bg-zinc-950 text-zinc-200" style={{ fontFamily: "system-ui,sans-serif" }}>
+  <div className="h-dvh flex flex-col bg-zinc-950 text-zinc-200" style={{ fontFamily: "system-ui,sans-serif" }}>
     {/* header */}
-    <header className="flex items-center gap-3 px-4 py-2 border-b border-zinc-800 shrink-0">
+    <header className="flex flex-wrap items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 border-b border-zinc-800 shrink-0">
       <h1 className="text-amber-200 tracking-[.25em] text-base" style={{ fontFamily: "TrajanEmbed,Cinzel,serif" }}>AUM STUDIO</h1>
-      <span className="text-zinc-500 text-xs hidden sm:block">engine renders · AI proposes · you decide</span>
+      <span className="text-zinc-500 text-xs hidden lg:block">engine renders · AI proposes · you decide</span>
       <div className="ml-auto flex rounded-lg overflow-hidden border border-zinc-700 text-xs">
         <button onClick={() => setMode("compose")} className={`px-3 py-1.5 ${mode === "compose" ? "bg-amber-300 text-zinc-900 font-semibold" : "hover:text-amber-200"}`}>Compose</button>
         <button onClick={() => setMode("feed")} className={`px-3 py-1.5 ${mode === "feed" ? "bg-amber-300 text-zinc-900 font-semibold" : "hover:text-amber-200"}`}>Feed 3×3</button>
@@ -291,16 +316,16 @@ export default function AumStudio() {
       </div>
     )}
 
-    <div className="flex flex-1 overflow-hidden">
-      {/* queue rail */}
-      <div className="w-20 sm:w-24 border-r border-zinc-800 overflow-y-auto p-2 flex flex-col gap-2 shrink-0">
-        <button onClick={() => fileRef.current.click()} className="aspect-square border border-dashed border-zinc-700 rounded-lg text-zinc-500 text-xl hover:border-amber-300 hover:text-amber-300">＋</button>
+    <div className="flex flex-col md:flex-row flex-1 overflow-y-auto md:overflow-hidden">
+      {/* queue rail: horizontal strip on mobile, vertical rail on desktop */}
+      <div className="w-full md:w-24 border-b md:border-b-0 md:border-r border-zinc-800 overflow-x-auto md:overflow-x-hidden md:overflow-y-auto p-2 flex flex-row md:flex-col gap-2 shrink-0">
+        <button onClick={() => fileRef.current.click()} className="aspect-square w-16 md:w-auto shrink-0 border border-dashed border-zinc-700 rounded-lg text-zinc-500 text-xl hover:border-amber-300 hover:text-amber-300">＋</button>
         <input ref={fileRef} type="file" accept="image/*" multiple className="hidden" onChange={(e) => [...e.target.files].forEach(loadFile)} />
         {items.map((it, i) => {
           const v = it.critique && verdictOf(weightedScore(it.critique.scores));
           return (
           <div key={it.id} onClick={() => { setSel(i); setMode("compose"); }}
-            className={`relative rounded-lg overflow-hidden cursor-pointer border-2 ${i === sel ? "border-amber-300" : "border-transparent"}`}>
+            className={`relative w-16 md:w-auto shrink-0 rounded-lg overflow-hidden cursor-pointer border-2 ${i === sel ? "border-amber-300" : "border-transparent"}`}>
             <MiniThumb img={it.img} />
             {v && <span title={`curator: ${v}`} className={`absolute top-1 left-1 w-2.5 h-2.5 rounded-full ${VERDICT_STYLE[v].dot} ring-1 ring-black/60`} />}
             {it.quote && <div className="absolute bottom-0 inset-x-0 bg-black/70 text-amber-200 text-[8px] px-1 truncate">{it.quote.text}</div>}
@@ -311,7 +336,7 @@ export default function AumStudio() {
       </div>
 
       {/* center */}
-      <div className="flex-1 overflow-y-auto p-4 flex flex-col items-center gap-3">
+      <div className="flex-1 md:overflow-y-auto p-3 sm:p-4 flex flex-col items-center gap-3">
         {mode === "compose" ? (
           !item ? (
             <div className="text-center text-zinc-500 mt-[16vh] leading-8">
@@ -363,14 +388,14 @@ export default function AumStudio() {
         )}
       </div>
 
-      {/* right panel */}
-      <div className="w-72 sm:w-80 border-l border-zinc-800 flex flex-col shrink-0 overflow-hidden">
-        <div className="flex border-b border-zinc-800 text-xs shrink-0">
+      {/* right panel: stacks under the canvas on mobile */}
+      <div className="w-full md:w-80 border-t md:border-t-0 md:border-l border-zinc-800 flex flex-col shrink-0 md:overflow-hidden">
+        <div className="flex border-b border-zinc-800 text-xs shrink-0 sticky top-0 bg-zinc-950 z-10 md:static">
           {["deck", "style", "canon", "words", "scout"].map((t) => (
             <button key={t} onClick={() => { setTab(t); if (t === "scout" && !scoutItems.length) runScout(); }}
               className={`flex-1 py-2.5 uppercase tracking-widest ${tab === t ? "text-amber-300 border-b-2 border-amber-300" : "text-zinc-500 hover:text-zinc-300"}`}>{t}</button>))}
         </div>
-        <div className="flex-1 overflow-y-auto p-3 space-y-3">
+        <div className="flex-1 md:overflow-y-auto p-3 space-y-3">
 
           {tab === "deck" && <>
             {(candidateIds.length > 0 || freshQuotes.length > 0) && (
@@ -514,6 +539,29 @@ export default function AumStudio() {
           </>}
 
           {tab === "scout" && <>
+            {!!(inbox && inbox.length) && (
+              <div className="border border-sky-800/50 rounded-lg p-2 space-y-2">
+                <div className="text-[10px] tracking-widest text-sky-400 uppercase">Agent inbox — scouted for you</div>
+                {inbox.map((s, i) => (
+                  <div key={i} className="rounded-lg overflow-hidden border border-zinc-800">
+                    {s.src && <img src={s.src} alt={s.title} className="w-full max-h-44 object-cover" loading="lazy" />}
+                    <div className="p-2">
+                      <div className="text-xs truncate">{s.title}</div>
+                      <div className="text-[10px] text-zinc-500">{s.artist} · {s.source} · {s.rights}</div>
+                      {s.why && <div className="text-[10px] text-zinc-600 italic mt-0.5">{s.why}</div>}
+                      <div className="flex gap-2 mt-1.5">
+                        {s.src ? (
+                          <button onClick={() => scoutAdd(s)} disabled={!!busy} className="flex-1 bg-amber-300 text-zinc-900 rounded py-1 text-xs font-semibold disabled:opacity-50">Add to queue</button>
+                        ) : (
+                          <span className="flex-1 text-center text-[10px] text-rose-400/80 py-1">rights pending — link only</span>
+                        )}
+                        {s.url && <a href={s.url} target="_blank" rel="noreferrer" className="flex-1 text-center border border-zinc-700 rounded py-1 text-xs">View source</a>}
+                      </div>
+                    </div>
+                  </div>))}
+                <button onClick={loadInbox} className="w-full border border-zinc-800 rounded-lg py-1 text-[10px] text-zinc-500 hover:border-sky-700">↻ refresh inbox</button>
+              </div>
+            )}
             <div className="flex items-center gap-2">
               <div className="text-[10px] tracking-widest text-amber-300 uppercase flex-1">Today's hunt</div>
               <button onClick={runScout} disabled={busy === "scout"} className="border border-zinc-700 rounded-lg px-2.5 py-1 text-xs hover:border-amber-300 disabled:opacity-50">{busy === "scout" ? "Hunting…" : "↻ New hunt"}</button>

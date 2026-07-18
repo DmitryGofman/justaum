@@ -1,0 +1,5 @@
+{
+  "note": "Extended quote stock. Agents append here via the /quote-harvest skill; the app merges this into the library at boot (deduped by text). Fields: text, attr, cat (presence|mind|freedom|impermanence|strength|love|self-mastery|silence), status (verified|disputed|modern|original).",
+  "updated": "2026-07-18",
+  "quotes": []
+}

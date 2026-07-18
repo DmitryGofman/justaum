@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: "TrajanEmbed";
-  src: url("/fonts/Trajan-Regular.ttf") format("truetype");
+  src: url("./assets/Trajan.woff2") format("woff2");
   font-display: swap;
 }
 

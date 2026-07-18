@@ -132,7 +132,8 @@ export function analyzeImage(img) {
           if (xx + 1 < x1) e += Math.abs(L - lum[y * w + xx + 1]);
           if (y + 1 < y1) e += Math.abs(L - lum[(y + 1) * w + xx]);
         }
-      const m = s / n, v = s2 / n - m * m, zx = (cc + 0.5) / 4, zy = (r + 0.5) / 5;
+      // clamp: float error can push variance of a flat region below zero → NaN scores
+      const m = s / n, v = Math.max(0, s2 / n - m * m), zx = (cc + 0.5) / 4, zy = (r + 0.5) / 5;
       zones.push({
         x: zx, y: zy,
         score: (zy > 0.55 ? 12 : 0) + (Math.abs(zx - 0.5) < 0.3 ? 8 : 0) - Math.sqrt(v) * 0.55 - (e / n) * 1.1 - (m > 170 ? 10 : 0),
