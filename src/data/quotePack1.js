@@ -1,0 +1,201 @@
+/* Quote Pack 1 — "Deep Well" (curated 2026-07)
+   Merged into the library at boot (deduped by text).
+   Status discipline is the same as the seed library:
+   verified = source documented | disputed = circulated but questionable /
+   loose rendering | modern = living or recent author quoted accurately.
+   Future packs: drop JSON into public/content/quotes-extended.json
+   (see /quote-harvest skill) — no rebuild needed. */
+
+export const QUOTE_PACK_1 = [
+  /* ---- Dhammapada & early Buddhist ---- */
+  { text: "As irrigators lead water where they will, as archers make their arrows straight, so the wise shape their minds.", attr: "Dhammapada 80", cat: "self-mastery", status: "verified" },
+  { text: "Just as a solid rock is not shaken by the storm, the wise are not moved by praise or blame.", attr: "Dhammapada 81", cat: "strength", status: "verified" },
+  { text: "Conquer anger with love, evil with good, meanness with generosity, and lies with truth.", attr: "Dhammapada 223 (paraphrase)", cat: "love", status: "verified" },
+  { text: "You are your own refuge; who else could be the refuge?", attr: "Dhammapada 160", cat: "self-mastery", status: "verified" },
+  { text: "If a traveler does not meet with one who is his better or his equal, let him firmly keep to his solitary journey.", attr: "Dhammapada 61", cat: "freedom", status: "verified" },
+  { text: "The fragrance of virtue travels even against the wind.", attr: "Dhammapada 54 (paraphrase)", cat: "self-mastery", status: "verified" },
+  { text: "Ardently do today what must be done. Who knows? Tomorrow, death comes.", attr: "Bhaddekaratta Sutta, MN 131", cat: "impermanence", status: "verified" },
+  { text: "Radiate boundless love toward the entire world.", attr: "Karaniya Metta Sutta", cat: "love", status: "verified" },
+  { text: "Before you speak, ask yourself: is it true, is it kind, is it necessary?", attr: "attributed to Buddha (not canonical)", cat: "silence", status: "disputed" },
+  { text: "When the student is ready, the teacher appears.", attr: "attributed Buddhist proverb (origin unclear)", cat: "presence", status: "disputed" },
+
+  /* ---- Tao Te Ching & Taoist ---- */
+  { text: "He who knows he has enough is rich.", attr: "Lao Tzu, Tao Te Ching 33", cat: "freedom", status: "verified" },
+  { text: "To attain knowledge, add things every day. To attain wisdom, remove things every day.", attr: "Lao Tzu, Tao Te Ching 48", cat: "mind", status: "verified" },
+  { text: "Great acts are made up of small deeds.", attr: "Lao Tzu, Tao Te Ching 63", cat: "strength", status: "verified" },
+  { text: "He who stands on tiptoe does not stand firm.", attr: "Lao Tzu, Tao Te Ching 24", cat: "self-mastery", status: "verified" },
+  { text: "The still is the master of unrest.", attr: "Lao Tzu, Tao Te Ching 26", cat: "silence", status: "verified" },
+  { text: "Yielding is the way of the Tao.", attr: "Lao Tzu, Tao Te Ching 40", cat: "impermanence", status: "verified" },
+  { text: "The sage does not accumulate. The more he does for others, the more he has.", attr: "Lao Tzu, Tao Te Ching 81", cat: "love", status: "verified" },
+  { text: "To know that you do not know is best.", attr: "Lao Tzu, Tao Te Ching 71", cat: "mind", status: "verified" },
+  { text: "Do you have the patience to wait till your mud settles and the water is clear?", attr: "Tao Te Ching 15 (Mitchell rendering)", cat: "silence", status: "disputed" },
+  { text: "The perfect man uses his mind like a mirror — grasping nothing, refusing nothing, receiving but not keeping.", attr: "Zhuangzi 7 (Watson trans.)", cat: "mind", status: "verified" },
+  { text: "A frog in a well cannot discuss the ocean.", attr: "Zhuangzi 17 (paraphrase)", cat: "mind", status: "verified" },
+
+  /* ---- Confucian ---- */
+  { text: "Real knowledge is to know the extent of one's ignorance.", attr: "Confucius, Analects 2.17 (paraphrase)", cat: "mind", status: "verified" },
+  { text: "The noble-minded are calm and steady. Little people are forever fussing and fretting.", attr: "Confucius, Analects 7.37", cat: "silence", status: "verified" },
+  { text: "Before you embark on a journey of revenge, dig two graves.", attr: "attributed to Confucius (unverified)", cat: "mind", status: "disputed" },
+
+  /* ---- Bhagavad Gita & Upanishads ---- */
+  { text: "He who sees inaction in action, and action in inaction, is wise among men.", attr: "Bhagavad Gita 4.18", cat: "presence", status: "verified" },
+  { text: "Man is made by his belief. As he believes, so he is.", attr: "Bhagavad Gita 17.3 (paraphrase)", cat: "mind", status: "verified" },
+  { text: "Perform your duty equipoised, abandoning all attachment to success or failure. Such evenness of mind is called yoga.", attr: "Bhagavad Gita 2.48", cat: "self-mastery", status: "verified" },
+  { text: "The soul is neither born, nor does it ever die.", attr: "Bhagavad Gita 2.20", cat: "impermanence", status: "verified" },
+  { text: "Little by little, through patience and repeated effort, the mind will become stilled in the Self.", attr: "Bhagavad Gita 6.25", cat: "silence", status: "verified" },
+  { text: "A gift is pure when it is given from the heart, to the right person, at the right time, and when we expect nothing in return.", attr: "Bhagavad Gita 17.20 (paraphrase)", cat: "love", status: "verified" },
+  { text: "The Self is hidden in the hearts of all, as butter lies hidden in cream.", attr: "Svetasvatara Upanishad", cat: "presence", status: "verified" },
+  { text: "When all desires that surge in the heart are renounced, the mortal becomes immortal.", attr: "Katha Upanishad", cat: "freedom", status: "verified" },
+  { text: "The little space within the heart is as great as this vast universe.", attr: "Chandogya Upanishad (paraphrase)", cat: "presence", status: "verified" },
+
+  /* ---- Zen, Chan & Japan ---- */
+  { text: "When you reach the top of the mountain, keep climbing.", attr: "Zen proverb", cat: "self-mastery", status: "verified" },
+  { text: "Fall down seven times, get up eight.", attr: "Japanese proverb", cat: "strength", status: "verified" },
+  { text: "The moon does not think to be reflected, nor does the water think to reflect.", attr: "Zenrin Kushu (Zen verse)", cat: "silence", status: "verified" },
+  { text: "Barn's burnt down — now I can see the moon.", attr: "Mizuta Masahide", cat: "freedom", status: "verified" },
+  { text: "When walking, walk. When eating, eat.", attr: "Zen proverb", cat: "presence", status: "verified" },
+  { text: "Not knowing is most intimate.", attr: "Dizang (Zen koan, Book of Serenity 20)", cat: "mind", status: "verified" },
+  { text: "Every day is a journey, and the journey itself is home.", attr: "Matsuo Basho (Narrow Road, paraphrase)", cat: "presence", status: "verified" },
+  { text: "The moon at the window — the thief left it behind.", attr: "Ryokan (haiku, paraphrase)", cat: "freedom", status: "verified" },
+  { text: "Many paths lead from the foot of the mountain, but at the peak we all gaze at the single bright moon.", attr: "Ikkyu", cat: "presence", status: "verified" },
+  { text: "To forget the self is to be actualized by myriad things.", attr: "Dogen, Genjokoan", cat: "freedom", status: "verified" },
+  { text: "Enlightenment is intimacy with all things.", attr: "Dogen (paraphrase)", cat: "presence", status: "verified" },
+  { text: "In the beginner's mind there are many possibilities, but in the expert's there are few.", attr: "Shunryu Suzuki, Zen Mind, Beginner's Mind", cat: "mind", status: "modern" },
+  { text: "The most important point is to accept yourself and stand on your two feet.", attr: "Shunryu Suzuki", cat: "self-mastery", status: "modern" },
+
+  /* ---- Tibetan ---- */
+  { text: "With leather soles beneath my feet, it is as if the whole earth had been covered in leather.", attr: "Shantideva, Bodhicharyavatara 5.13 (paraphrase)", cat: "mind", status: "verified" },
+  { text: "The affairs of the world will go on forever. Do not delay the practice of meditation.", attr: "Milarepa", cat: "impermanence", status: "verified" },
+  { text: "If you want to know your future, look at your present actions.", attr: "attributed to Padmasambhava", cat: "self-mastery", status: "disputed" },
+
+  /* ---- Sufi & Persian ---- */
+  { text: "The lamps are different, but the Light is the same.", attr: "Rumi, Masnavi (Nicholson trans.)", cat: "presence", status: "verified" },
+  { text: "Everyone has been made for some particular work, and the desire for that work has been put in every heart.", attr: "Rumi, Masnavi", cat: "self-mastery", status: "verified" },
+  { text: "Out beyond ideas of wrongdoing and rightdoing there is a field. I'll meet you there.", attr: "Rumi (Barks rendering)", cat: "love", status: "disputed" },
+  { text: "Let the beauty we love be what we do.", attr: "Rumi (Barks rendering)", cat: "love", status: "disputed" },
+  { text: "Why do you stay in prison, when the door is so wide open?", attr: "Rumi (Barks rendering)", cat: "freedom", status: "disputed" },
+  { text: "Do not grieve. Anything you lose comes round in another form.", attr: "Rumi (Barks rendering)", cat: "impermanence", status: "disputed" },
+  { text: "Be like a tree and let the dead leaves drop.", attr: "attributed to Rumi (unverified)", cat: "impermanence", status: "disputed" },
+  { text: "I wish I could show you, when you are lonely or in darkness, the astonishing light of your own being.", attr: "Daniel Ladinsky (marketed as Hafiz)", cat: "love", status: "disputed" },
+  { text: "My heart has become capable of every form.", attr: "Ibn Arabi, Tarjuman al-Ashwaq", cat: "love", status: "verified" },
+  { text: "Die before you die.", attr: "Sufi saying", cat: "freedom", status: "verified" },
+  { text: "Trust in God, but tie your camel.", attr: "Arab proverb (attributed hadith)", cat: "self-mastery", status: "verified" },
+  { text: "Wherever you are is the entry point.", attr: "Kabir (Bly rendering)", cat: "presence", status: "disputed" },
+
+  /* ---- Jewish sources ---- */
+  { text: "If I am not for myself, who will be for me? If I am only for myself, what am I? And if not now, when?", attr: "Hillel, Pirkei Avot 1:14", cat: "self-mastery", status: "verified" },
+  { text: "Who is strong? He who conquers his impulse.", attr: "Ben Zoma, Pirkei Avot 4:1", cat: "strength", status: "verified" },
+  { text: "Who is rich? He who rejoices in his portion.", attr: "Ben Zoma, Pirkei Avot 4:1", cat: "presence", status: "verified" },
+  { text: "It is not your duty to finish the work, but neither are you free to desist from it.", attr: "Rabbi Tarfon, Pirkei Avot 2:16", cat: "strength", status: "verified" },
+  { text: "The whole world is a very narrow bridge; the essential thing is not to fear at all.", attr: "Rebbe Nachman of Breslov, Likutei Moharan II:48", cat: "strength", status: "verified" },
+  { text: "If you believe breaking is possible, believe fixing is possible.", attr: "Rebbe Nachman of Breslov", cat: "strength", status: "verified" },
+  { text: "To every thing there is a season, and a time to every purpose under the heaven.", attr: "Ecclesiastes 3:1", cat: "impermanence", status: "verified" },
+  { text: "Weeping may endure for a night, but joy cometh in the morning.", attr: "Psalm 30:5", cat: "strength", status: "verified" },
+  { text: "He leadeth me beside the still waters. He restoreth my soul.", attr: "Psalm 23:2-3", cat: "silence", status: "verified" },
+  { text: "Guard your heart above all else, for it determines the course of your life.", attr: "Proverbs 4:23", cat: "mind", status: "verified" },
+
+  /* ---- Christian mystics ---- */
+  { text: "The eye through which I see God is the same eye through which God sees me.", attr: "Meister Eckhart, Sermons", cat: "presence", status: "verified" },
+  { text: "If the only prayer you ever say in your entire life is thank you, it will be enough.", attr: "attributed to Meister Eckhart", cat: "love", status: "disputed" },
+  { text: "Let nothing disturb you. Let nothing frighten you. All things pass. Patience obtains all things.", attr: "Teresa of Avila, Nada te turbe", cat: "impermanence", status: "verified" },
+  { text: "In the evening of life, we will be judged on love alone.", attr: "John of the Cross, Sayings of Light and Love", cat: "love", status: "verified" },
+  { text: "Our heart is restless until it rests in Thee.", attr: "Augustine, Confessions 1.1", cat: "presence", status: "verified" },
+  { text: "What we are looking for is what is looking.", attr: "attributed to Francis of Assisi (unverified)", cat: "presence", status: "disputed" },
+
+  /* ---- Stoics & Greeks ---- */
+  { text: "The best revenge is to be unlike him who performed the injury.", attr: "Marcus Aurelius, Meditations 6.6", cat: "self-mastery", status: "verified" },
+  { text: "Loss is nothing else but change, and change is Nature's delight.", attr: "Marcus Aurelius, Meditations 9.35", cat: "impermanence", status: "verified" },
+  { text: "How much time he gains who does not look to see what his neighbour says or does.", attr: "Marcus Aurelius, Meditations 4.18", cat: "mind", status: "verified" },
+  { text: "Look well into thyself; there is a source of strength which will always spring up if thou wilt always look.", attr: "Marcus Aurelius, Meditations 7.59", cat: "strength", status: "verified" },
+  { text: "Nowhere can man find a quieter or more untroubled retreat than in his own soul.", attr: "Marcus Aurelius, Meditations 4.3", cat: "silence", status: "verified" },
+  { text: "Accept the things to which fate binds you, and love the people with whom fate brings you together.", attr: "Marcus Aurelius, Meditations 6.39 (paraphrase)", cat: "love", status: "verified" },
+  { text: "Everything we hear is an opinion, not a fact. Everything we see is a perspective, not the truth.", attr: "misattributed to Marcus Aurelius", cat: "mind", status: "disputed" },
+  { text: "Sometimes even to live is an act of courage.", attr: "Seneca, Letters 78", cat: "strength", status: "verified" },
+  { text: "He suffers more than necessary, who suffers before it is necessary.", attr: "Seneca, Letters 98", cat: "mind", status: "verified" },
+  { text: "Begin at once to live, and count each separate day as a separate life.", attr: "Seneca, On the Shortness of Life (paraphrase)", cat: "presence", status: "verified" },
+  { text: "No man was ever wise by chance.", attr: "Seneca, Letters 76", cat: "self-mastery", status: "verified" },
+  { text: "Associate with people who are likely to improve you.", attr: "Seneca, Letters 7", cat: "self-mastery", status: "verified" },
+  { text: "Seek not that the things which happen should happen as you wish; but wish the things which happen to be as they are, and you will have a tranquil flow of life.", attr: "Epictetus, Enchiridion 8", cat: "freedom", status: "verified" },
+  { text: "If you want to improve, be content to be thought foolish and stupid.", attr: "Epictetus, Enchiridion 13", cat: "self-mastery", status: "verified" },
+  { text: "Only the educated are free.", attr: "Epictetus, Discourses 2.1", cat: "freedom", status: "verified" },
+  { text: "It's not what happens to you, but how you react to it that matters.", attr: "Epictetus (modern paraphrase)", cat: "mind", status: "disputed" },
+  { text: "No man ever steps in the same river twice, for it is not the same river and he is not the same man.", attr: "Heraclitus (fragment, paraphrase)", cat: "impermanence", status: "verified" },
+  { text: "Character is destiny.", attr: "Heraclitus, fragment 119", cat: "self-mastery", status: "verified" },
+  { text: "Nature loves to hide.", attr: "Heraclitus, fragment 123", cat: "silence", status: "verified" },
+  { text: "Do not spoil what you have by desiring what you have not.", attr: "Epicurus, Vatican Sayings 35 (paraphrase)", cat: "presence", status: "verified" },
+  { text: "Know thyself.", attr: "Delphic maxim", cat: "self-mastery", status: "verified" },
+  { text: "Wonder is the beginning of wisdom.", attr: "Socrates (after Plato, Theaetetus 155d)", cat: "mind", status: "verified" },
+  { text: "Never stop sculpting your own statue.", attr: "Plotinus, Enneads 1.6 (paraphrase)", cat: "self-mastery", status: "verified" },
+  { text: "The secret of change is to focus all of your energy not on fighting the old, but on building the new.", attr: "Dan Millman, Way of the Peaceful Warrior (often misattributed to Socrates)", cat: "impermanence", status: "disputed" },
+
+  /* ---- Philosophers & psychologists ---- */
+  { text: "All of humanity's problems stem from man's inability to sit quietly in a room alone.", attr: "Blaise Pascal, Pensées 139", cat: "silence", status: "verified" },
+  { text: "Life can only be understood backwards; but it must be lived forwards.", attr: "Søren Kierkegaard, Journals 1843", cat: "impermanence", status: "verified" },
+  { text: "You must have chaos within you to give birth to a dancing star.", attr: "Friedrich Nietzsche, Thus Spoke Zarathustra", cat: "strength", status: "verified" },
+  { text: "In the depth of winter, I finally learned that within me there lay an invincible summer.", attr: "Albert Camus, Return to Tipasa", cat: "strength", status: "verified" },
+  { text: "Your vision will become clear only when you can look into your own heart.", attr: "Carl Jung, Letters", cat: "presence", status: "verified" },
+  { text: "What you resist, persists.", attr: "attributed to Carl Jung (paraphrase)", cat: "mind", status: "disputed" },
+  { text: "I am not what happened to me, I am what I choose to become.", attr: "attributed to Carl Jung (unverified)", cat: "freedom", status: "disputed" },
+  { text: "The greatest weapon against stress is our ability to choose one thought over another.", attr: "attributed to William James (unverified)", cat: "mind", status: "disputed" },
+
+  /* ---- Poets & writers ---- */
+  { text: "I am large, I contain multitudes.", attr: "Walt Whitman, Song of Myself 51", cat: "presence", status: "verified" },
+  { text: "Keep your face always toward the sunshine, and shadows will fall behind you.", attr: "misattributed to Walt Whitman", cat: "strength", status: "disputed" },
+  { text: "Finish each day and be done with it. You have done what you could.", attr: "Ralph Waldo Emerson, Letters", cat: "freedom", status: "verified" },
+  { text: "Adopt the pace of nature: her secret is patience.", attr: "attributed to Emerson (unverified)", cat: "presence", status: "disputed" },
+  { text: "Heaven is under our feet as well as over our heads.", attr: "Henry David Thoreau, Walden", cat: "presence", status: "verified" },
+  { text: "It's not what you look at that matters, it's what you see.", attr: "attributed to Thoreau (unverified)", cat: "mind", status: "disputed" },
+  { text: "To see a World in a Grain of Sand, and a Heaven in a Wild Flower.", attr: "William Blake, Auguries of Innocence", cat: "presence", status: "verified" },
+  { text: "Perhaps all the dragons in our lives are princesses waiting to see us act, just once, with beauty and courage.", attr: "Rainer Maria Rilke, Letters to a Young Poet", cat: "strength", status: "verified" },
+  { text: "Let your life lightly dance on the edges of Time like dew on the tip of a leaf.", attr: "Rabindranath Tagore, Stray Birds", cat: "impermanence", status: "verified" },
+  { text: "Clouds come floating into my life, no longer to carry rain or usher storm, but to add color to my sunset sky.", attr: "Rabindranath Tagore, Stray Birds", cat: "impermanence", status: "verified" },
+  { text: "Faith is the bird that feels the light and sings when the dawn is still dark.", attr: "attributed to Tagore (unverified)", cat: "strength", status: "disputed" },
+  { text: "Within you there is a stillness and a sanctuary to which you can retreat at any time and be yourself.", attr: "Hermann Hesse, Siddhartha", cat: "silence", status: "verified" },
+  { text: "Some of us think holding on makes us strong; but sometimes it is letting go.", attr: "Hermann Hesse", cat: "freedom", status: "verified" },
+  { text: "The still point of the turning world.", attr: "T.S. Eliot, Four Quartets", cat: "silence", status: "verified" },
+  { text: "The end of all our exploring will be to arrive where we started and know the place for the first time.", attr: "T.S. Eliot, Little Gidding", cat: "presence", status: "verified" },
+  { text: "The deeper that sorrow carves into your being, the more joy you can contain.", attr: "Kahlil Gibran, The Prophet", cat: "strength", status: "verified" },
+  { text: "Tell me, what is it you plan to do with your one wild and precious life?", attr: "Mary Oliver, The Summer Day", cat: "presence", status: "modern" },
+  { text: "Attention is the beginning of devotion.", attr: "Mary Oliver, Upstream", cat: "presence", status: "modern" },
+  { text: "The impeded stream is the one that sings.", attr: "Wendell Berry", cat: "strength", status: "modern" },
+
+  /* ---- Indian teachers ---- */
+  { text: "Take up one idea. Make that one idea your life.", attr: "Swami Vivekananda", cat: "self-mastery", status: "verified" },
+  { text: "All differences in this world are of degree, and not of kind, because oneness is the secret of everything.", attr: "Swami Vivekananda", cat: "presence", status: "verified" },
+  { text: "Happiness is your nature. It is not wrong to desire it. What is wrong is seeking it outside when it is inside.", attr: "Ramana Maharshi", cat: "presence", status: "modern" },
+  { text: "Let what comes come, let what goes go. Find out what remains.", attr: "Ramana Maharshi", cat: "impermanence", status: "modern" },
+  { text: "The mind creates the abyss, the heart crosses it.", attr: "Nisargadatta Maharaj", cat: "love", status: "modern" },
+  { text: "You are not the body, you are not the mind; you are the witness of both.", attr: "Nisargadatta Maharaj (paraphrase)", cat: "freedom", status: "modern" },
+  { text: "Love everyone, serve everyone, remember God.", attr: "Neem Karoli Baba", cat: "love", status: "modern" },
+  { text: "A mind that is fast is sick. A mind that is slow is sound. A mind that is still is divine.", attr: "Meher Baba", cat: "silence", status: "modern" },
+  { text: "Yoga does not just change the way we see things, it transforms the person who sees.", attr: "B.K.S. Iyengar, Light on Life", cat: "self-mastery", status: "modern" },
+  { text: "Live quietly in the moment and see the beauty of all before you.", attr: "Paramahansa Yogananda", cat: "presence", status: "modern" },
+
+  /* ---- Modern contemplatives ---- */
+  { text: "Whatever the present moment contains, accept it as if you had chosen it.", attr: "Eckhart Tolle, The Power of Now", cat: "presence", status: "modern" },
+  { text: "Life is the dancer and you are the dance.", attr: "Eckhart Tolle", cat: "presence", status: "modern" },
+  { text: "The present moment is the only time over which we have dominion.", attr: "Thich Nhat Hanh", cat: "presence", status: "modern" },
+  { text: "Peace in oneself, peace in the world.", attr: "Thich Nhat Hanh", cat: "silence", status: "modern" },
+  { text: "Drink your tea slowly and reverently, as if it is the axis on which the earth revolves.", attr: "Thich Nhat Hanh", cat: "presence", status: "modern" },
+  { text: "This is the real secret of life — to be completely engaged with what you are doing in the here and now.", attr: "Alan Watts", cat: "presence", status: "modern" },
+  { text: "Trying to define yourself is like trying to bite your own teeth.", attr: "Alan Watts", cat: "mind", status: "modern" },
+  { text: "The meaning of life is just to be alive.", attr: "Alan Watts", cat: "freedom", status: "modern" },
+  { text: "Be here now.", attr: "Ram Dass", cat: "presence", status: "modern" },
+  { text: "Treat everyone you meet like God in drag.", attr: "Ram Dass", cat: "love", status: "modern" },
+  { text: "Fear is a natural reaction to moving closer to the truth.", attr: "Pema Chödrön", cat: "strength", status: "modern" },
+  { text: "Let difficulty transform you. And it will.", attr: "Pema Chödrön", cat: "strength", status: "modern" },
+  { text: "Freedom from the desire for an answer is essential to the understanding of a problem.", attr: "Jiddu Krishnamurti", cat: "freedom", status: "modern" },
+  { text: "In the end these things matter most: How well did you love? How fully did you live? How deeply did you let go?", attr: "Jack Kornfield (often misattributed to Buddha)", cat: "love", status: "modern" },
+  { text: "The boundary to what we can accept is the boundary to our freedom.", attr: "Tara Brach", cat: "freedom", status: "modern" },
+  { text: "Feelings are just visitors. Let them come and go.", attr: "Mooji", cat: "impermanence", status: "modern" },
+  { text: "Empty your mind. Be formless, shapeless, like water.", attr: "Bruce Lee", cat: "mind", status: "modern" },
+  { text: "Do not pray for an easy life; pray for the strength to endure a difficult one.", attr: "Bruce Lee", cat: "strength", status: "modern" },
+
+  /* ---- Proverbs ---- */
+  { text: "However long the night, the dawn will break.", attr: "African proverb", cat: "strength", status: "verified" },
+  { text: "Smooth seas do not make skillful sailors.", attr: "African proverb", cat: "strength", status: "verified" },
+  { text: "Still waters run deep.", attr: "Proverb", cat: "silence", status: "verified" },
+  { text: "The best time to plant a tree was twenty years ago. The second best time is now.", attr: "proverb (origin unclear, often called Chinese)", cat: "strength", status: "disputed" },
+  { text: "Fear knocked at the door. Faith answered. No one was there.", attr: "proverb (attributed to various authors)", cat: "strength", status: "disputed" },
+  { text: "Listen to the wind, it talks. Listen to the silence, it speaks.", attr: "attributed Native American proverb (unverified)", cat: "silence", status: "disputed" },
+];
